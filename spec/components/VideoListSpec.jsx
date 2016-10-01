@@ -10,7 +10,7 @@ describe('VideoList', function() {
     expect(React.Component.isPrototypeOf(VideoList)).to.be.false;
   });
 
-  it('should render one `VideoListEntry` when given one video', function() {
+  xit('should render one `VideoListEntry` when given one video', function() {
     var shallowRenderer = createRenderer();
 
     var oneFakeVideo = window.fakeVideoData.slice(-1);
@@ -23,7 +23,7 @@ describe('VideoList', function() {
     videoList.props.children.forEach(child => expect(child.type).to.equal(VideoListEntry));
   });
 
-  it('should render three `VideoListEntry` when given three videos', function() {
+  xit('should render three `VideoListEntry` when given three videos', function() {
     var shallowRenderer = createRenderer();
 
     var threeFakeVideos = window.fakeVideoData.slice(-3);
@@ -36,7 +36,7 @@ describe('VideoList', function() {
     videoList.props.children.forEach(child => expect(child.type).to.equal(VideoListEntry));
   });
 
-  it('should render five `VideoListEntry` when given five videos', function() {
+  xit('should render five `VideoListEntry` when given five videos', function() {
     var shallowRenderer = createRenderer();
 
     var fiveFakeVideos = window.fakeVideoData.slice(-5);

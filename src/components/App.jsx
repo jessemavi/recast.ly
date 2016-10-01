@@ -12,12 +12,15 @@ class App extends React.Component {
 
   videoChange (vid) {
     console.log(vid);
-    //THIS IS TRIGGERING LOOPS
-    // this.setState({
-    //   currentVideo: vid
-    // });
+    this.setState({
+      currentVideo: vid
+    });
   }
 
+  //this.videoChange.bind(this);
+  // function(vid) {
+  //   return this.videoChange(vid);
+  // }.bind(this);
   render () {
     return (
       <div>
@@ -26,7 +29,7 @@ class App extends React.Component {
           <VideoPlayer video={this.state.currentVideo} />
         </div>
         <div className="col-md-5">
-          <VideoList videos={this.state.list} clicked={(vid) => this.videoChange(vid)}/>
+          <VideoList videos={this.state.list} appContextFunc={(vid) => this.videoChange(vid)}/>
         </div>
       </div>
     );

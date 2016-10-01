@@ -1,7 +1,8 @@
 var VideoList = (props) => (
   <div className="video-list media">
     {props.videos.map(function(video) {
-      return <VideoListEntry video={video} clicked={props.clicked}/>;
+      var func = props.appContextFunc.bind(null, video);
+      return <VideoListEntry video={video} preloadedClickFunc={func}/>;
     })}
   </div>
 );
