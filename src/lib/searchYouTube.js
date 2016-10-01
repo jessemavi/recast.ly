@@ -1,10 +1,18 @@
 var searchYouTube = (options, callback) => {
   // TODO
+  var defaultSearch = {
+    part: 'snippet, id',
+    videoEmbeddable: true,
+    type: 'video',
+    key: window.YOUTUBE_API_KEY,
+    q: 'bees',
+    maxResults: 7
+  };
 
   $.ajax({
     url: 'https://www.googleapis.com/youtube/v3/search',
     type: 'GET',
-    data: $.extend({part: 'snippet, id'}, options),
+    data: $.extend(defaultSearch, options),
     dataType: 'json',
     success: function(data) {
       console.log('Success', data);
@@ -15,10 +23,7 @@ var searchYouTube = (options, callback) => {
         console.log('error retrieving data: ', data.responseText);
       }
     }
-  }
-
-  );
-
+  });
 };
 
 window.searchYouTube = searchYouTube;

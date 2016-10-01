@@ -2,11 +2,11 @@ class App extends React.Component {
 
   constructor (props) {
     super(props);
-    
     this.state = {
-      currentVideo: fakeVideoData[0],
-      list: fakeVideoData
+      currentVideo: exampleVideoData[0],
+      list: [],
     };
+    this.searchable = true;
 
   }
 
@@ -17,6 +17,32 @@ class App extends React.Component {
     });
   }
 
+  searchInput () {
+    console.log(this.searchable);
+    if (this.searchable) { 
+      var options = { q: $('input').val() };
+      this.props.searchYouTube(options, function(videoArr) {
+        this.setState({
+          currentVideo: videoArr[0],
+          list: videoArr
+        });
+        this.searchable = false;
+        setTimeout(() => {
+          console.log('setting true');
+          this.searchable = true;
+        }, 500);        
+      }.bind(this));
+    }
+  }
+
+  componentDidMount () {
+    this.props.searchYouTube({}, function(videoArr) {
+      this.setState({
+        currentVideo: videoArr[0],
+        list: videoArr
+      });
+    }.bind(this));
+  }
   //this.videoChange.bind(this);
   // function(vid) {
   //   return this.videoChange(vid);
@@ -24,7 +50,7 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        <Nav />
+        <Nav inputListener={this.searchInput.bind(this)} />
         <div className="col-md-7">
           <VideoPlayer video={this.state.currentVideo} />
         </div>
